@@ -1,0 +1,3335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Imanuil Alvin - Backend Developer specializing in C#, .NET, Web API, payment gateways and system integration.">
+
+    <title>Imanuil Alvin — Backend Developer</title>
+
+
+    <style>
+
+        /* =========================================================
+           THEME
+        ========================================================= */
+
+        :root {
+
+            --bg: #070b14;
+
+            --surface: rgba(255, 255, 255, 0.06);
+
+            --surface-hover: rgba(255, 255, 255, 0.10);
+
+            --border: rgba(255, 255, 255, 0.12);
+
+            --text: #f8fafc;
+
+            --muted: #94a3b8;
+
+            --primary: #60a5fa;
+
+            --secondary: #a78bfa;
+
+            --cyan: #22d3ee;
+
+            --green: #4ade80;
+
+            --shadow:
+                0 30px 80px rgba(0, 0, 0, 0.35);
+        }
+
+
+        body.light {
+
+            --bg: #eef4ff;
+
+            --surface: rgba(255, 255, 255, 0.60);
+
+            --surface-hover: rgba(255, 255, 255, 0.82);
+
+            --border: rgba(255, 255, 255, 0.85);
+
+            --text: #111827;
+
+            --muted: #64748b;
+
+            --primary: #2563eb;
+
+            --secondary: #7c3aed;
+
+            --cyan: #0891b2;
+
+            --shadow:
+                0 30px 70px rgba(30, 64, 175, 0.12);
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+
+        html {
+
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            font-family:
+                Inter,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background:
+                var(--bg);
+
+            color:
+                var(--text);
+
+            overflow-x:
+                hidden;
+
+            transition:
+                background 0.4s ease,
+                color 0.4s ease;
+        }
+
+
+        a {
+
+            text-decoration:
+                none;
+
+            color:
+                inherit;
+        }
+
+
+        /* =========================================================
+           AMBIENT BACKGROUND
+        ========================================================= */
+
+        .ambient {
+
+            position:
+                fixed;
+
+            width:
+                500px;
+
+            height:
+                500px;
+
+            border-radius:
+                50%;
+
+            pointer-events:
+                none;
+
+            filter:
+                blur(110px);
+
+            opacity:
+                0.25;
+
+            z-index:
+                -2;
+
+            transition:
+                transform 0.25s ease-out;
+        }
+
+
+        .ambient.one {
+
+            background:
+                #2563eb;
+
+            top:
+                -220px;
+
+            left:
+                -180px;
+        }
+
+
+        .ambient.two {
+
+            background:
+                #7c3aed;
+
+            right:
+                -220px;
+
+            top:
+                25%;
+        }
+
+
+        .ambient.three {
+
+            background:
+                #06b6d4;
+
+            left:
+                30%;
+
+            bottom:
+                -300px;
+        }
+
+
+        /* =========================================================
+           GLASS
+        ========================================================= */
+
+        .glass {
+
+            background:
+                var(--surface);
+
+            border:
+                1px solid var(--border);
+
+            backdrop-filter:
+                blur(22px);
+
+            -webkit-backdrop-filter:
+                blur(22px);
+
+            box-shadow:
+                var(--shadow);
+        }
+
+
+        /* =========================================================
+           CONTAINER
+        ========================================================= */
+
+        .container {
+
+            width:
+                min(1180px, 92%);
+
+            margin:
+                auto;
+        }
+
+
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
+
+        .navbar {
+
+            position:
+                fixed;
+
+            top:
+                20px;
+
+            left:
+                50%;
+
+            transform:
+                translateX(-50%);
+
+            width:
+                min(1100px, 92%);
+
+            padding:
+                12px 15px 12px 20px;
+
+            border-radius:
+                18px;
+
+            z-index:
+                1000;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+        }
+
+
+        .logo {
+
+            font-size:
+                21px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                -1px;
+
+            white-space:
+                nowrap;
+        }
+
+
+        .logo span {
+
+            color:
+                var(--primary);
+        }
+
+
+        .nav-links {
+
+            display:
+                flex;
+
+            gap:
+                28px;
+        }
+
+
+        .nav-links a {
+
+            font-size:
+                13px;
+
+            color:
+                var(--muted);
+
+            transition:
+                all 0.25s ease;
+        }
+
+
+        .nav-links a:hover {
+
+            color:
+                var(--text);
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .nav-actions {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+        }
+
+
+        .theme {
+
+            width:
+                38px;
+
+            height:
+                38px;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                var(--surface);
+
+            color:
+                var(--text);
+
+            border-radius:
+                50%;
+
+            cursor:
+                pointer;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .theme:hover {
+
+            transform:
+                rotate(15deg);
+        }
+
+
+        .hire {
+
+            padding:
+                10px 17px;
+
+            border-radius:
+                50px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--secondary)
+                );
+
+            color:
+                white;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            transition:
+                0.25s ease;
+
+            white-space:
+                nowrap;
+        }
+
+
+        .hire:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 10px 30px
+                rgba(96, 165, 250, 0.25);
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+
+            min-height:
+                100vh;
+
+            padding-top:
+                130px;
+
+            padding-bottom:
+                70px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            position:
+                relative;
+        }
+
+
+        .hero-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                minmax(0, 1fr) 480px;
+
+            gap:
+                70px;
+
+            align-items:
+                center;
+        }
+
+
+        /* =========================================================
+           HERO CONTENT
+        ========================================================= */
+
+        .eyebrow {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            padding:
+                8px 13px;
+
+            border-radius:
+                50px;
+
+            background:
+                var(--surface);
+
+            border:
+                1px solid var(--border);
+
+            color:
+                var(--muted);
+
+            font-size:
+                12px;
+
+            margin-bottom:
+                25px;
+
+            animation:
+                fadeUp 0.8s ease;
+        }
+
+
+        .dot {
+
+            width:
+                7px;
+
+            height:
+                7px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--green);
+
+            box-shadow:
+                0 0 12px var(--green);
+        }
+
+
+        /* =========================================================
+           IMPORTANT:
+           NAME ALWAYS STAYS ON ONE LINE
+        ========================================================= */
+
+        .hero-name {
+
+            font-size:
+                clamp(48px, 7vw, 90px);
+
+            line-height:
+                0.95;
+
+            letter-spacing:
+                -6px;
+
+            margin-bottom:
+                25px;
+
+            white-space:
+                nowrap;
+
+            animation:
+                fadeUp 0.8s ease 0.1s both;
+        }
+
+
+        .gradient-text {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--primary),
+                    var(--cyan),
+                    var(--secondary)
+                );
+
+            -webkit-background-clip:
+                text;
+
+            background-clip:
+                text;
+
+            color:
+                transparent;
+
+            background-size:
+                200% auto;
+
+            animation:
+                gradientMove 5s linear infinite;
+        }
+
+
+        .hero-role {
+
+            font-size:
+                24px;
+
+            font-weight:
+                650;
+
+            margin-bottom:
+                18px;
+
+            animation:
+                fadeUp 0.8s ease 0.2s both;
+        }
+
+
+        .hero-description {
+
+            max-width:
+                620px;
+
+            color:
+                var(--muted);
+
+            line-height:
+                1.8;
+
+            font-size:
+                16px;
+
+            margin-bottom:
+                30px;
+
+            animation:
+                fadeUp 0.8s ease 0.3s both;
+        }
+
+
+        .hero-buttons {
+
+            display:
+                flex;
+
+            gap:
+                12px;
+
+            flex-wrap:
+                wrap;
+
+            animation:
+                fadeUp 0.8s ease 0.4s both;
+        }
+
+
+        .btn {
+
+            padding:
+                14px 21px;
+
+            border-radius:
+                14px;
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .btn-primary {
+
+            color:
+                white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--secondary)
+                );
+        }
+
+
+        .btn-secondary {
+
+            border:
+                1px solid var(--border);
+
+            background:
+                var(--surface);
+        }
+
+
+        .btn:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(0, 0, 0, 0.18);
+        }
+
+
+        /* =========================================================
+           STATS
+        ========================================================= */
+
+        .stats {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:
+                15px;
+
+            margin-top:
+                45px;
+
+            animation:
+                fadeUp 0.8s ease 0.5s both;
+        }
+
+
+        .stat {
+
+            padding:
+                18px;
+
+            border-radius:
+                18px;
+        }
+
+
+        .stat strong {
+
+            display:
+                block;
+
+            font-size:
+                23px;
+
+            margin-bottom:
+                5px;
+        }
+
+
+        .stat span {
+
+            font-size:
+                11px;
+
+            color:
+                var(--muted);
+        }
+
+
+        /* =========================================================
+           VIDEO AREA
+        ========================================================= */
+
+        .visual {
+
+            position:
+                relative;
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            perspective:
+                1000px;
+        }
+
+
+        .video-card {
+
+            width:
+                390px;
+
+            height:
+                520px;
+
+            padding:
+                10px;
+
+            border-radius:
+                35px;
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            transform:
+                translateX(var(--mouse-x, 0px))
+                rotateY(var(--rotate-y, 0deg))
+                rotateX(var(--rotate-x, 0deg));
+
+            transition:
+                transform 0.15s ease-out;
+
+            animation:
+                float 5s ease-in-out infinite;
+        }
+
+
+        .video-card::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            inset:
+                -2px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #60a5fa,
+                    #22d3ee,
+                    #a78bfa,
+                    #ec4899
+                );
+
+            z-index:
+                -1;
+
+            filter:
+                blur(15px);
+
+            opacity:
+                0.65;
+        }
+
+
+        .video-inner {
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            overflow:
+                hidden;
+
+            border-radius:
+                27px;
+
+            background:
+                #020617;
+
+            position:
+                relative;
+        }
+
+
+        .video-inner video {
+
+            width:
+                100%;
+
+            height:
+                100%;
+
+            object-fit:
+                cover;
+
+            display:
+                block;
+
+            transition:
+                transform 0.5s ease;
+        }
+
+
+        .video-card:hover video {
+
+            transform:
+                scale(1.04);
+        }
+
+
+        .video-overlay {
+
+            position:
+                absolute;
+
+            inset:
+                0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(2, 6, 23, 0.78),
+                    transparent 55%
+                );
+
+            pointer-events:
+                none;
+        }
+
+
+        .video-label {
+
+            position:
+                absolute;
+
+            left:
+                25px;
+
+            bottom:
+                25px;
+
+            padding:
+                10px 14px;
+
+            border-radius:
+                12px;
+
+            background:
+                rgba(255, 255, 255, 0.10);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.15);
+
+            backdrop-filter:
+                blur(15px);
+
+            color:
+                white;
+
+            font-size:
+                12px;
+
+            z-index:
+                3;
+        }
+
+
+        /* =========================================================
+           FLOATING BADGES
+        ========================================================= */
+
+        .floating-card {
+
+            position:
+                absolute;
+
+            padding:
+                13px 18px;
+
+            border-radius:
+                15px;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            white-space:
+                nowrap;
+
+            text-align:
+                center;
+
+            z-index:
+                5;
+
+            animation:
+                float 4s ease-in-out infinite;
+        }
+
+
+        /* FIXED:
+           API Integration now has enough width
+        */
+
+        .floating-card.api {
+
+            left:
+                -75px;
+
+            top:
+                70px;
+
+            min-width:
+                165px;
+
+            color:
+                #bfdbfe;
+        }
+
+
+        .floating-card.dotnet {
+
+            right:
+                -60px;
+
+            top:
+                170px;
+
+            min-width:
+                120px;
+
+            color:
+                #ddd6fe;
+
+            animation-delay:
+                1s;
+        }
+
+
+        .floating-card.payment {
+
+            left:
+                -55px;
+
+            bottom:
+                100px;
+
+            min-width:
+                160px;
+
+            color:
+                #a7f3d0;
+
+            animation-delay:
+                2s;
+        }
+
+
+        /* =========================================================
+           SECTIONS
+        ========================================================= */
+
+        section {
+
+            padding:
+                120px 0;
+        }
+
+
+        .section-label {
+
+            color:
+                var(--primary);
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                2px;
+
+            margin-bottom:
+                12px;
+        }
+
+
+        .section-title {
+
+            font-size:
+                clamp(38px, 5vw, 60px);
+
+            letter-spacing:
+                -4px;
+
+            margin-bottom:
+                15px;
+        }
+
+
+        .section-description {
+
+            max-width:
+                650px;
+
+            color:
+                var(--muted);
+
+            line-height:
+                1.8;
+
+            margin-bottom:
+                45px;
+        }
+
+
+        /* =========================================================
+           SKILLS
+        ========================================================= */
+
+        .skills {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap:
+                18px;
+        }
+
+
+        .skill {
+
+            padding:
+                28px;
+
+            border-radius:
+                24px;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .skill:hover {
+
+            transform:
+                translateY(-7px);
+
+            background:
+                var(--surface-hover);
+        }
+
+
+        .skill-icon {
+
+            width:
+                48px;
+
+            height:
+                48px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                14px;
+
+            background:
+                rgba(96, 165, 250, 0.12);
+
+            color:
+                var(--primary);
+
+            font-weight:
+                800;
+
+            margin-bottom:
+                20px;
+        }
+
+
+        .skill h3 {
+
+            margin-bottom:
+                9px;
+        }
+
+
+        .skill p {
+
+            color:
+                var(--muted);
+
+            line-height:
+                1.7;
+
+            font-size:
+                14px;
+        }
+
+
+        /* =========================================================
+           EXPERIENCE
+        ========================================================= */
+
+        .experience {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap:
+                20px;
+        }
+
+
+        .experience-card {
+
+            padding:
+                28px;
+
+            border-radius:
+                22px;
+
+            min-height:
+                230px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            justify-content:
+                space-between;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .experience-card:hover {
+
+            transform:
+                translateY(-6px);
+
+            background:
+                var(--surface-hover);
+        }
+
+
+        .experience-year {
+
+            color:
+                var(--primary);
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                1px;
+
+            margin-bottom:
+                25px;
+        }
+
+
+        .experience-card h3 {
+
+            margin-bottom:
+                7px;
+
+            font-size:
+                20px;
+        }
+
+
+        .experience-card .role {
+
+            color:
+                var(--secondary);
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            margin-bottom:
+                12px;
+        }
+
+
+        .experience-card p {
+
+            color:
+                var(--muted);
+
+            line-height:
+                1.7;
+
+            font-size:
+                14px;
+        }
+
+
+        /* =========================================================
+           PROJECTS
+        ========================================================= */
+
+        .projects {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap:
+                24px;
+
+            align-items:
+                stretch;
+        }
+
+
+        .project {
+
+            padding:
+                30px;
+
+            border-radius:
+                25px;
+
+            min-height:
+                270px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            justify-content:
+                space-between;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .project:hover {
+
+            transform:
+                translateY(-7px);
+
+            background:
+                var(--surface-hover);
+        }
+
+
+        .project-number {
+
+            color:
+                var(--primary);
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                1px;
+
+            margin-bottom:
+                22px;
+        }
+
+
+        .project h3 {
+
+            font-size:
+                22px;
+
+            margin-bottom:
+                12px;
+        }
+
+
+        .project p {
+
+            color:
+                var(--muted);
+
+            line-height:
+                1.75;
+
+            margin-bottom:
+                25px;
+
+            font-size:
+                14px;
+        }
+
+
+        .tags {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                7px;
+
+            margin-top:
+                auto;
+        }
+
+
+        .tag {
+
+            padding:
+                7px 11px;
+
+            border-radius:
+                50px;
+
+            background:
+                var(--surface-hover);
+
+            border:
+                1px solid var(--border);
+
+            color:
+                var(--muted);
+
+            font-size:
+                10px;
+
+            font-weight:
+                700;
+        }
+
+
+        /* =========================================================
+           CONTACT
+        ========================================================= */
+
+        .contact {
+
+            padding:
+                70px 40px;
+
+            border-radius:
+                35px;
+
+            text-align:
+                center;
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+        }
+
+
+        .contact::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                300px;
+
+            height:
+                300px;
+
+            background:
+                var(--primary);
+
+            filter:
+                blur(120px);
+
+            opacity:
+                0.12;
+
+            left:
+                50%;
+
+            top:
+                50%;
+
+            transform:
+                translate(-50%, -50%);
+        }
+
+
+        .contact h2 {
+
+            position:
+                relative;
+
+            font-size:
+                clamp(38px, 6vw, 70px);
+
+            letter-spacing:
+                -4px;
+
+            margin-bottom:
+                15px;
+        }
+
+
+        .contact p {
+
+            position:
+                relative;
+
+            color:
+                var(--muted);
+
+            margin-bottom:
+                30px;
+        }
+
+
+        .contact-buttons {
+
+            position:
+                relative;
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            gap:
+                10px;
+
+            flex-wrap:
+                wrap;
+        }
+
+
+        /* =========================================================
+           WHATSAPP
+        ========================================================= */
+
+        .whatsapp {
+
+            position:
+                fixed;
+
+            right:
+                25px;
+
+            bottom:
+                25px;
+
+            width:
+                58px;
+
+            height:
+                58px;
+
+            border-radius:
+                50%;
+
+            background:
+                #25D366;
+
+            color:
+                white;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            font-size:
+                22px;
+
+            z-index:
+                500;
+
+            box-shadow:
+                0 15px 40px
+                rgba(37, 211, 102, 0.30);
+
+            transition:
+                0.25s ease;
+        }
+
+
+        .whatsapp:hover {
+
+            transform:
+                scale(1.1);
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+
+            text-align:
+                center;
+
+            color:
+                var(--muted);
+
+            font-size:
+                12px;
+
+            padding:
+                35px 0 50px;
+        }
+
+
+        /* =========================================================
+           ANIMATIONS
+        ========================================================= */
+
+        @keyframes fadeUp {
+
+            from {
+
+                opacity:
+                    0;
+
+                transform:
+                    translateY(25px);
+            }
+
+            to {
+
+                opacity:
+                    1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        @keyframes float {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+
+                transform:
+                    translateY(-8px);
+            }
+        }
+
+
+        @keyframes gradientMove {
+
+            0% {
+
+                background-position:
+                    0% center;
+            }
+
+            100% {
+
+                background-position:
+                    200% center;
+            }
+        }
+
+
+        /* =========================================================
+           TABLET
+        ========================================================= */
+
+        @media(max-width: 1000px) {
+
+            .hero-grid {
+
+                grid-template-columns:
+                    1fr;
+
+                text-align:
+                    center;
+            }
+
+
+            .hero-description {
+
+                margin-left:
+                    auto;
+
+                margin-right:
+                    auto;
+            }
+
+
+            .hero-buttons {
+
+                justify-content:
+                    center;
+            }
+
+
+            .visual {
+
+                margin-top:
+                    30px;
+            }
+
+
+            .skills {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+
+            .experience {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media(max-width: 700px) {
+
+            .navbar {
+
+                top:
+                    10px;
+
+                padding:
+                    10px 12px 10px 15px;
+            }
+
+
+            .nav-links {
+
+                display:
+                    none;
+            }
+
+
+            .logo {
+
+                font-size:
+                    18px;
+            }
+
+
+            .hero {
+
+                padding-top:
+                    115px;
+            }
+
+
+            /*
+               Keep name on ONE line.
+            */
+
+            .hero-name {
+
+                font-size:
+                    clamp(40px, 12vw, 64px);
+
+                letter-spacing:
+                    -3px;
+
+                white-space:
+                    nowrap;
+            }
+
+
+            .hero-role {
+
+                font-size:
+                    20px;
+            }
+
+
+            .hero-description {
+
+                font-size:
+                    14px;
+            }
+
+
+            .video-card {
+
+                width:
+                    min(82vw, 390px);
+
+                height:
+                    500px;
+            }
+
+
+            /*
+               Hide floating labels on small screens
+               so they don't cover the video.
+            */
+
+            .floating-card {
+
+                display:
+                    none;
+            }
+
+
+            .stats {
+
+                grid-template-columns:
+                    1fr;
+
+                max-width:
+                    300px;
+
+                margin-left:
+                    auto;
+
+                margin-right:
+                    auto;
+            }
+
+
+            .skills {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            /*
+               PROJECTS:
+               Desktop = 2 columns
+               Mobile = 1 column
+            */
+
+            .projects {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    18px;
+            }
+
+
+            .project {
+
+                min-height:
+                    240px;
+            }
+
+
+            /*
+               EXPERIENCE:
+               Desktop = 2 columns
+               Mobile = 1 column
+            */
+
+            .experience {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    18px;
+            }
+
+
+            section {
+
+                padding:
+                    90px 0;
+            }
+
+
+            .section-title {
+
+                letter-spacing:
+                    -3px;
+            }
+
+
+            .contact {
+
+                padding:
+                    50px 20px;
+            }
+
+
+            .contact h2 {
+
+                letter-spacing:
+                    -3px;
+            }
+
+
+            .whatsapp {
+
+                right:
+                    18px;
+
+                bottom:
+                    18px;
+            }
+        }
+
+
+        /* =========================================================
+           VERY SMALL PHONES
+        ========================================================= */
+
+        @media(max-width: 380px) {
+
+            .hero-name {
+
+                font-size:
+                    37px;
+
+                letter-spacing:
+                    -2.5px;
+            }
+
+
+            .hire {
+
+                padding:
+                    9px 12px;
+            }
+
+
+            .theme {
+
+                width:
+                    34px;
+
+                height:
+                    34px;
+            }
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         AMBIENT LIGHT
+    ========================================================= -->
+
+    <div class="ambient one"></div>
+
+    <div class="ambient two"></div>
+
+    <div class="ambient three"></div>
+
+
+
+    <!-- =========================================================
+         NAVIGATION
+    ========================================================= -->
+
+    <nav class="navbar glass">
+
+        <a href="#" class="logo">
+
+            Imanuil
+            <span>Alvin</span>
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#skills">
+                Skills
+            </a>
+
+            <a href="#experience">
+                Experience
+            </a>
+
+            <a href="#projects">
+                Projects
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+        </div>
+
+
+        <div class="nav-actions">
+
+            <button
+                class="theme"
+                onclick="toggleTheme()"
+                id="themeButton">
+
+                ☀
+
+            </button>
+
+
+            <a
+                href="mailto:imanuilalvin@gmail.com"
+                class="hire">
+
+                Hire Me
+
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+
+    <section class="hero">
+
+        <div class="container hero-grid">
+
+            <!-- LEFT -->
+
+            <div class="hero-content">
+
+
+                <div class="eyebrow">
+
+                    <span class="dot"></span>
+
+                    Available for opportunities
+                </div>
+
+
+                <!-- NAME IS NOW ONE LINE -->
+
+                <h1 class="hero-name">
+
+                    Imanuil
+                    <span class="gradient-text">
+                        Alvin
+                    </span>
+
+                </h1>
+
+
+                <div class="hero-role">
+
+                    Backend Developer
+
+                    <span style="color:var(--primary)">
+                        •
+                    </span>
+
+                    C# / .NET
+
+                </div>
+
+
+                <p class="hero-description">
+
+                    I build backend systems, Web APIs,
+                    payment integrations and business
+                    applications.
+
+                    My focus is turning complex business
+                    requirements into reliable and
+                    maintainable software.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="#projects"
+                        class="btn btn-primary">
+
+                        Explore My Work →
+
+                    </a>
+
+
+                    <a
+                        href="mailto:imanuilalvin@gmail.com"
+                        class="btn btn-secondary">
+
+                        Hire Me
+
+                    </a>
+
+                </div>
+
+
+                <div class="stats">
+
+
+                    <div class="stat glass">
+
+                        <strong>
+                            C#
+                        </strong>
+
+                        <span>
+                            Primary Language
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat glass">
+
+                        <strong>
+                            .NET
+                        </strong>
+
+                        <span>
+                            Backend Framework
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat glass">
+
+                        <strong>
+                            API
+                        </strong>
+
+                        <span>
+                            System Integration
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- RIGHT / VIDEO -->
+
+            <div class="visual">
+
+
+                <!-- FIXED WIDTH API BADGE -->
+
+                <div class="floating-card api glass">
+
+                    API Integration
+
+                </div>
+
+
+                <div class="floating-card dotnet glass">
+
+                    C# / .NET
+
+                </div>
+
+
+                <div class="floating-card payment glass">
+                    Payment Gateway
+                </div>
+
+
+                <div
+                    class="video-card glass"
+                    id="videoCard">
+
+
+                    <div class="video-inner">
+
+
+                        <!--
+                            PUT YOUR VIDEO IN THE SAME FOLDER:
+
+                            hero-video.mp4
+                        -->
+
+                        <video
+                            id="heroVideo"
+                            src="C:\Users\User\Downloads\Protfolio\Assets\Video\hero-video.mp4"
+                            autoplay
+                            muted
+                            loop
+                            playsinline>
+                        </video>
+
+
+                        <div class="video-overlay"></div>
+
+
+                        <div class="video-label">
+
+                            Backend Developer
+
+                            <br>
+
+                            <span style="opacity:.65">
+
+                                Kota Kinabalu, Sabah
+
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         ABOUT
+    ========================================================= -->
+
+    <section id="about">
+
+        <div class="container">
+
+
+            <div class="section-label">
+                About Me
+            </div>
+
+
+            <h2 class="section-title">
+
+                I build what happens
+                <br>
+
+                behind the interface.
+
+            </h2>
+
+
+            <p class="section-description">
+
+                I'm Imanuil Alvin, a backend developer
+                based in Kota Kinabalu, Sabah, Malaysia.
+
+                I primarily work with C# and .NET,
+                focusing on backend systems, APIs,
+                payment gateways, databases and
+                system integrations.
+
+            </p>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         SKILLS
+    ========================================================= -->
+
+    <section id="skills">
+
+        <div class="container">
+
+
+            <div class="section-label">
+                Expertise
+            </div>
+
+
+            <h2 class="section-title">
+
+                What I work with.
+
+            </h2>
+
+
+            <p class="section-description">
+
+                My experience covers business software,
+                financial systems, APIs, integrations,
+                IoT and connected devices.
+
+            </p>
+
+
+            <div class="skills">
+
+
+                <div class="skill glass">
+
+                    <div class="skill-icon">
+                        C#
+                    </div>
+
+                    <h3>
+                        C# / .NET
+                    </h3>
+
+                    <p>
+
+                        Backend development and
+                        business applications using
+                        C# and .NET.
+
+                    </p>
+
+                </div>
+
+
+                <div class="skill glass">
+
+                    <div class="skill-icon">
+                        API
+                    </div>
+
+                    <h3>
+                        Web API
+                    </h3>
+
+                    <p>
+
+                        REST APIs, integrations,
+                        callbacks and backend
+                        services.
+
+                    </p>
+
+                </div>
+
+
+                <div class="skill glass">
+
+                    <div class="skill-icon">
+                        DB
+                    </div>
+
+                    <h3>
+                        MySQL
+                    </h3>
+
+                    <p>
+
+                        Database design, SQL queries,
+                        views and stored procedures.
+
+                    </p>
+
+                </div>
+
+
+                <div class="skill glass">
+
+                    <div class="skill-icon">
+                        $
+                    </div>
+
+                    <h3>
+                        Payment Gateway
+                    </h3>
+
+                    <p>
+
+                        Kiple, PayNet and SenangPay
+                        payment integrations.
+
+                    </p>
+
+                </div>
+
+
+                <div class="skill glass">
+
+                    <div class="skill-icon">
+                        EV
+                    </div>
+
+                    <h3>
+                        EV / OCPP
+                    </h3>
+
+                    <p>
+
+                        EV charging applications and
+                        charger communication.
+
+                    </p>
+
+                </div>
+
+
+                <div class="skill glass">
+
+                    <div class="skill-icon">
+                        IoT
+                    </div>
+
+                    <h3>
+                        IoT Systems
+                    </h3>
+
+                    <p>
+
+                        Smart water meter systems,
+                        monitoring and device
+                        communication.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         EXPERIENCE
+    ========================================================= -->
+
+    <section id="experience">
+
+        <div class="container">
+
+
+            <div class="section-label">
+                Experience
+            </div>
+
+
+            <h2 class="section-title">
+
+                Experience that matters.
+
+            </h2>
+
+
+            <p class="section-description">
+
+                I've worked across accounting,
+                shipping, EV charging, payment,
+                IoT and business software systems.
+
+            </p>
+
+
+            <!--
+                ROW + COLUMN GRID
+
+                Desktop:
+                [ 1 ][ 2 ]
+                [ 3 ][ 4 ]
+                [ 5 ][ 6 ]
+
+                Mobile:
+                [ 1 ]
+                [ 2 ]
+                [ 3 ]
+                ...
+            -->
+
+            <div class="experience">
+
+
+                <div class="experience-card glass">
+
+                    <div>
+
+                        <div class="experience-year">
+                            BACKEND
+                        </div>
+
+                        <h3>
+                            Accounting & Business Systems
+                        </h3>
+
+                        <div class="role">
+                            C# / .NET / MySQL
+                        </div>
+
+                        <p>
+
+                            Developed accounting software
+                            with General Ledger, Profit &
+                            Loss, Cash Flow and business
+                            management features.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="experience-card glass">
+
+                    <div>
+
+                        <div class="experience-year">
+                            SHIPPING
+                        </div>
+
+                        <h3>
+                            Container Tracking
+                        </h3>
+
+                        <div class="role">
+                            Backend / System Integration
+                        </div>
+
+                        <p>
+
+                            Developed a container tracking
+                            system for a shipping company
+                            to monitor container movements
+                            from depot to customer.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="experience-card glass">
+
+                    <div>
+
+                        <div class="experience-year">
+                            EV
+                        </div>
+
+                        <h3>
+                            EV Charging Applications
+                        </h3>
+
+                        <div class="role">
+                            C# / OCPP / API
+                        </div>
+
+                        <p>
+
+                            Developed EV charging mobile
+                            applications with OCPP
+                            integration for charger
+                            communication.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="experience-card glass">
+
+                    <div>
+
+                        <div class="experience-year">
+                            IOT
+                        </div>
+
+                        <h3>
+                            Smart Water Meter
+                        </h3>
+
+                        <div class="role">
+                            IoT / Backend
+                        </div>
+
+                        <p>
+
+                            Developed IoT solutions for
+                            smart water meter systems,
+                            device monitoring and
+                            water usage tracking.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="experience-card glass">
+
+                    <div>
+
+                        <div class="experience-year">
+                            PAYMENT
+                        </div>
+
+                        <h3>
+                            Payment Gateway Integration
+                        </h3>
+
+                        <div class="role">
+                            API / Payment Systems
+                        </div>
+
+                        <p>
+
+                            Integrated payment gateways
+                            including Kiple, PayNet and
+                            SenangPay.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="experience-card glass">
+
+                    <div>
+
+                        <div class="experience-year">
+                            CLIENTS
+                        </div>
+
+                        <h3>
+                            Project & Client Support
+                        </h3>
+
+                        <div class="role">
+                            Technical Support
+                        </div>
+
+                        <p>
+
+                            Coordinated projects, supervised
+                            development tasks and participated
+                            in physical software training for
+                            SMEs in Sabah.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         PROJECTS
+    ========================================================= -->
+
+    <section id="projects">
+
+        <div class="container">
+
+
+            <div class="section-label">
+                Selected Work
+            </div>
+
+
+            <h2 class="section-title">
+
+                Systems I've built.
+
+            </h2>
+
+
+            <p class="section-description">
+
+                A selection of the technical areas
+                I've worked on throughout my development
+                experience.
+
+            </p>
+
+
+            <!--
+                PROJECT GRID
+
+                Desktop:
+                [ 01 ][ 02 ]
+                [ 03 ][ 04 ]
+                [ 05 ][ 06 ]
+
+                Mobile:
+                [ 01 ]
+                [ 02 ]
+                [ 03 ]
+                [ 04 ]
+                [ 05 ]
+                [ 06 ]
+            -->
+
+            <div class="projects">
+
+
+                <!-- 01 -->
+
+                <div class="project glass">
+
+                    <div>
+
+                        <div class="project-number">
+                            01 / ACCOUNTING
+                        </div>
+
+                        <h3>
+                            Accounting Platform
+                        </h3>
+
+                        <p>
+
+                            Accounting and business
+                            management system with
+                            General Ledger, Profit &
+                            Loss and Cash Flow.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="tags">
+
+                        <span class="tag">
+                            C#
+                        </span>
+
+                        <span class="tag">
+                            .NET
+                        </span>
+
+                        <span class="tag">
+                            MySQL
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 02 -->
+
+                <div class="project glass">
+
+                    <div>
+
+                        <div class="project-number">
+                            02 / EV
+                        </div>
+
+                        <h3>
+                            EV Charging Platform
+                        </h3>
+
+                        <p>
+
+                            Mobile application and
+                            backend integration for
+                            EV charging infrastructure
+                            using OCPP.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="tags">
+
+                        <span class="tag">
+                            C#
+                        </span>
+
+                        <span class="tag">
+                            OCPP
+                        </span>
+
+                        <span class="tag">
+                            API
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 03 -->
+
+                <div class="project glass">
+
+                    <div>
+
+                        <div class="project-number">
+                            03 / PAYMENT
+                        </div>
+
+                        <h3>
+                            Payment Integration
+                        </h3>
+
+                        <p>
+
+                            Payment gateway integrations
+                            connecting applications with
+                            external payment providers.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="tags">
+
+                        <span class="tag">
+                            Kiple
+                        </span>
+
+                        <span class="tag">
+                            PayNet
+                        </span>
+
+                        <span class="tag">
+                            SenangPay
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 04 -->
+
+                <div class="project glass">
+
+                    <div>
+
+                        <div class="project-number">
+                            04 / IOT
+                        </div>
+
+                        <h3>
+                            Smart Water Meter
+                        </h3>
+
+                        <p>
+
+                            IoT backend solution for
+                            smart water meter monitoring,
+                            device communication and
+                            usage data.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="tags">
+
+                        <span class="tag">
+                            IoT
+                        </span>
+
+                        <span class="tag">
+                            .NET
+                        </span>
+
+                        <span class="tag">
+                            MySQL
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 05 -->
+
+                <div class="project glass">
+
+                    <div>
+
+                        <div class="project-number">
+                            05 / SHIPPING
+                        </div>
+
+                        <h3>
+                            Container Tracking
+                        </h3>
+
+                        <p>
+
+                            Tracking system for monitoring
+                            container movement from depot
+                            to customer.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="tags">
+
+                        <span class="tag">
+                            Backend
+                        </span>
+
+                        <span class="tag">
+                            API
+                        </span>
+
+                        <span class="tag">
+                            Database
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 06 -->
+
+                <div class="project glass">
+
+                    <div>
+
+                        <div class="project-number">
+                            06 / API
+                        </div>
+
+                        <h3>
+                            Backend API Systems
+                        </h3>
+
+                        <p>
+
+                            Backend APIs and integrations
+                            connecting business applications,
+                            services and external systems.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="tags">
+
+                        <span class="tag">
+                            C#
+                        </span>
+
+                        <span class="tag">
+                            .NET
+                        </span>
+
+                        <span class="tag">
+                            REST API
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         CONTACT
+    ========================================================= -->
+
+    <section id="contact">
+
+        <div class="container">
+
+            <div class="contact glass">
+
+
+                <div class="section-label">
+                    Let's Work Together
+                </div>
+
+
+                <h2>
+
+                    Let's build something
+
+                    <span class="gradient-text">
+                        useful.
+                    </span>
+
+                </h2>
+
+
+                <p>
+
+                    Looking for a backend developer,
+                    API developer or someone to handle
+                    payment and system integrations?
+
+                    Let's talk.
+
+                </p>
+
+
+                <div class="contact-buttons">
+
+
+                    <a
+                        href="mailto:imanuilalvin@gmail.com"
+                        class="btn btn-primary">
+
+                        ✉ Email Me
+
+                    </a>
+
+
+                    <a
+                        href="https://wa.me/60125003176"
+                        target="_blank"
+                        class="btn btn-secondary">
+
+                        WhatsApp
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer>
+
+        <div class="container">
+
+            © 2026 Imanuil Alvin
+            Backend Developer • C# • .NET
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================================
+         FLOATING WHATSAPP
+    ========================================================= -->
+
+    <a
+        class="whatsapp"
+        href="https://wa.me/60125003176"
+        target="_blank"
+        aria-label="WhatsApp">
+
+        ☎
+
+    </a>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+
+        /* =====================================================
+           MOUSE PARALLAX
+        ===================================================== */
+
+        const videoCard =
+            document.getElementById("videoCard");
+
+
+        const ambientOne =
+            document.querySelector(".ambient.one");
+
+
+        const ambientTwo =
+            document.querySelector(".ambient.two");
+
+
+        const ambientThree =
+            document.querySelector(".ambient.three");
+
+
+        document.addEventListener(
+            "mousemove",
+            function(event) {
+
+
+                /*
+                    Don't run the effect on mobile.
+                */
+
+                if (window.innerWidth <= 700) {
+
+                    return;
+                }
+
+
+                const x =
+                    event.clientX /
+                    window.innerWidth;
+
+
+                const y =
+                    event.clientY /
+                    window.innerHeight;
+
+
+                /*
+                    Horizontal video movement
+                */
+
+                const moveX =
+                    (x - 0.5) * 24;
+
+
+                /*
+                    3D rotation
+                */
+
+                const rotateY =
+                    (x - 0.5) * 8;
+
+
+                const rotateX =
+                    (0.5 - y) * 6;
+
+
+                videoCard.style.setProperty(
+                    "--mouse-x",
+                    `${moveX}px`
+                );
+
+
+                videoCard.style.setProperty(
+                    "--rotate-y",
+                    `${rotateY}deg`
+                );
+
+
+                videoCard.style.setProperty(
+                    "--rotate-x",
+                    `${rotateX}deg`
+                );
+
+
+                /*
+                    Ambient background movement
+                */
+
+                ambientOne.style.transform =
+                    `translate(
+                        ${x * 80}px,
+                        ${y * 50}px
+                    )`;
+
+
+                ambientTwo.style.transform =
+                    `translate(
+                        ${x * -60}px,
+                        ${y * 70}px
+                    )`;
+
+
+                ambientThree.style.transform =
+                    `translate(
+                        ${x * 40}px,
+                        ${y * -60}px
+                    )`;
+
+            }
+        );
+
+
+
+        /* =====================================================
+           DARK / LIGHT MODE
+        ===================================================== */
+
+        function toggleTheme() {
+
+
+            document.body.classList.toggle(
+                "light"
+            );
+
+
+            const button =
+                document.getElementById(
+                    "themeButton"
+                );
+
+
+            if (
+                document.body.classList
+                    .contains("light")
+            ) {
+
+
+                button.textContent =
+                    "☾";
+
+
+                localStorage.setItem(
+                    "theme",
+                    "light"
+                );
+
+
+            } else {
+
+
+                button.textContent =
+                    "☀";
+
+
+                localStorage.setItem(
+                    "theme",
+                    "dark"
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           LOAD SAVED THEME
+        ===================================================== */
+
+        const savedTheme =
+            localStorage.getItem(
+                "theme"
+            );
+
+
+        if (savedTheme === "light") {
+
+
+            document.body.classList.add(
+                "light"
+            );
+
+
+            document.getElementById(
+                "themeButton"
+            ).textContent = "☾";
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
